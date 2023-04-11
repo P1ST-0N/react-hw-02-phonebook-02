@@ -3,6 +3,7 @@ import nextId from 'react-id-generator'
 
 import ContactsList from './Contacts/ContactsList';
 import { ContactForm } from './Form/ContactForm';
+import Filter from './Filter/Filter';
 
 export class App extends Component {
   state = {
@@ -70,7 +71,7 @@ export class App extends Component {
 
         <h2 style={{ textAlign: 'center' }}>Contacts</h2>
 
-        {/* <Filter value={filter} onChange={this.filterChange} /> */}
+        <Filter value={filter} onChange={this.filterChange} />
 
         <ContactsList deleteButton={this.deleteContact} contacts={filtered} />
       </div>
