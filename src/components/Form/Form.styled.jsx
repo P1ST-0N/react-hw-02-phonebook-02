@@ -16,7 +16,7 @@ export const Form = styled(FormikForm)`
 export const Field = styled(InputField)`
   height: 20px;
   width: 200px;
-  border: 2px solid orange;
+  border: 2px solid aqua;
   border-radius: 10px;
   margin-left: 145px;
 `;
@@ -31,7 +31,7 @@ export const Button = styled.button`
   height: 30px;
   margin-left: 200px;
   background-color: #f8be5338;
-  border: 1px solid orange;
+  border: 1px solid blue;
   border-radius: 5px;
   margin-bottom: 30px;
 `;
@@ -51,6 +51,7 @@ export const Item = styled.li`
   font-style: italic;
 `;
 
+//add test styles for Title
 export const Title = styled.h3`
 text-aline: center;
 background-color: red;
@@ -67,6 +68,6 @@ export const ButtonDelete = styled.button`
   width: 80px;
   height: 20px;
   background-color: #f8be5338;
-  border: 1px solid orange;
+  border: 1px solid red;
   border-radius: 5px;
 `;
