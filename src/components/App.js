@@ -1,9 +1,9 @@
-import { Component } from 'react'
-import nextId from 'react-id-generator'
+import { Component } from "react";
+import nextId from "react-id-generator";
 
-import ContactsList from './Contacts/ContactsList';
-import { ContactForm } from './Form/ContactForm';
-import Filter from './Filter/Filter';
+import ContactsList from "./Contacts/ContactsList";
+import { ContactForm } from "./Form/ContactForm";
+import Filter from "./Filter/Filter";
 
 export class App extends Component {
   state = {
@@ -15,6 +15,22 @@ export class App extends Component {
     ],
     filter: "",
   };
+
+  componentDidMount() {
+    const getName = localStorage.getItem("name");
+    const parcedName = JSON.parse(getName);
+    if (parcedName) {
+      this.setState({
+        contacts: parcedName,
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem("name", JSON.stringify(this.state.contacts));
+    }
+  }
 
   addContact = ({ number, name }) => {
     if (
@@ -35,21 +51,21 @@ export class App extends Component {
     }
   };
 
-  filterChange = event => {
+  filterChange = (event) => {
     this.setState({ filter: event.target.value });
   };
 
-  deleteContact = id => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== id),
+  deleteContact = (id) => {
+    this.setState((prevState) => ({
+      contacts: prevState.contacts.filter((contact) => contact.id !== id),
     }));
   };
 
   getFilteredContacts = () => {
     const filterName = this.state.filter.toLowerCase();
-    return this.state.contacts.filter(contact =>
+    return this.state.contacts.filter((contact) =>
       contact.name.toLowerCase().includes(filterName)
-      );
+    );
   };
 
   render() {
@@ -57,19 +73,20 @@ export class App extends Component {
     const filtered = this.getFilteredContacts();
 
     return (
-      <div style={{
-        width: '500px',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        border: '1px dashed orange',
-        backgroundColor: '#fffcf9',
-      }}
+      <div
+        style={{
+          width: "500px",
+          marginLeft: "auto",
+          marginRight: "auto",
+          border: "1px dashed orange",
+          backgroundColor: "#fffcf9",
+        }}
       >
-        <h1 style={{ textAlign: 'center' }}>PhoneBook</h1>
+        <h1 style={{ textAlign: "center" }}>PhoneBook</h1>
 
         <ContactForm onSubmit={this.addContact} />
 
-        <h2 style={{ textAlign: 'center' }}>Contacts</h2>
+        <h2 style={{ textAlign: "center" }}>Contacts</h2>
 
         <Filter value={filter} onChange={this.filterChange} />
 
